@@ -67,16 +67,16 @@ csv.each_slice(20) do |batch|
 
   batch.each do |row|
     entry = {
-      "rated_at" => Time.parse(row["created"]).strftime("%FT%T"),
-      "rating"   => row["You rated"],
+      "rated_at" => Time.parse(row["Date Added"]).strftime("%FT%T"),
+      "rating"   => row["Your Rating"],
       "title"    => row["Title"],
       "year"     => row["Year"],
       "ids"      => {
-        "imdb"   => row["const"]
+        "imdb"   => row["Const"]
       }
     }
 
-    (row["Title type"] == "TV Series" ?  shows : movies).push entry
+    (row["Title Type"] == "TV Series" ?  shows : movies).push entry
   end
   
   request = {
